@@ -31,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String response = '';
+  bool textResponse = true;
+  String image64 = '';
 
   void _info() async {
     _displayResponse(await Camera.info);
@@ -54,7 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _displayResponse(mapData) {
     setState(() {
+      textResponse = true;
       response = JsonEncoder.withIndent('  ').convert(mapData);
+    });
+  }
+
+  void _displayThumb() async {
+    var imageData = await ThetaFile.getLastThumb64();
+    setState(() {
+      textResponse = false;
+      image64 = imageData;
     });
   }
 
@@ -100,9 +111,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('take picture'),
                   color: Colors.lightGreen,
                 ),
+                MaterialButton(
+                  onPressed: _displayThumb,
+                  child: Text('thumb'),
+                  color: Colors.lightGreen,
+                ),
               ],
             ),
-            Text(response),
+            textResponse
+                ? Text(response)
+                : Container(child: Image.memory(base64Decode(image64))),
           ],
         ),
       ),
