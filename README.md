@@ -6,6 +6,8 @@ Demonstration of THETA WebAPI Tester.
 
 [theta WebAPI package](https://github.com/theta360developers/webapi/tree/master/packages/theta)
 
+RICOH THETA camera models V, SC2, SC2B, Z1 using RICOH API v2.1.
+
 ## Example implementation
 
 ```dart
