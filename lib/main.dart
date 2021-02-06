@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:theta/theta.dart';
 
@@ -7,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String response = '';
   bool textResponse = true;
-  String image64 = '';
+  Uint8List imageBytes;
 
   void _info() async {
     _displayResponse(await Camera.info);
@@ -62,10 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _displayThumb() async {
-    var imageData = await ThetaFile.getLastThumb64();
+    var imageData = await ThetaFile.getLastThumbBytes();
     setState(() {
       textResponse = false;
-      image64 = imageData;
+      imageBytes = imageData;
     });
   }
 
@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             textResponse
                 ? Text(response)
-                : Container(child: Image.memory(base64Decode(image64))),
+                : Container(child: Image.memory(imageBytes)),
           ],
         ),
       ),

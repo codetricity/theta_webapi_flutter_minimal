@@ -27,6 +27,7 @@ dependencies:
     git:
       url: https://github.com/codetricity/theta
       ref: main
+    # path: ../../theta
   http: ^0.12.2
 
 
