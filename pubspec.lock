@@ -154,7 +154,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "4173968389a842cb4dacc5af7d627030dd70ab4f"
+      resolved-ref: f8350e08c9bcfaaaa3f3af812a4a8b58b3b937d2
       url: "https://github.com/codetricity/theta"
     source: git
     version: "0.1.0"
